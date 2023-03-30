@@ -4,16 +4,16 @@ function compareArrays(arr1, arr2) {
     arr1.every((value, index) => value === arr2[index]);
   return result;
 }
-function getUsersNamesInAgeRange(arr, gender) {
-  let result =
-    arr
-      .filter(() => gender === "мужской")
-      .map((item) => item.age)
-      .reduce((a, b) => a + b / arr.length, 0) ||
-    arr
-      .filter(() => gender === "женский")
-      .map((item) => item.age)
-      .reduce((a, b) => a + b / arr.length, 0);
-
-  return result; // array
+function average(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum / arr.length;
+}
+function getUsersNamesInAgeRange(users, gender) {
+  result = users
+    .filter((users) => users.gender === gender)
+    .map((item) => item.age);
+  return average(result) || 0; 
 }
