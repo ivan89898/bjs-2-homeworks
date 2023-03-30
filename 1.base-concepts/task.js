@@ -26,12 +26,11 @@ function calculateTotalMortgage(percent, contribution, amount, date) {
     return false;
   }
 
-  S = amount - contribution;
-  P = (1 / 12) * percent;
-  n = date;
-  totalAmount = parseFloat((S * (P + P / (((1 + P) ^ n) - 1))).toFixed(2));
+  const S = amount - contribution;
+  const P = ((1 / 12) * percent) / 100;
+  const n = date;
+  const amountPerMonth = (S * (P + P / ((1 + P) ** n - 1)));
+  const totalAmount = parseFloat(amountPerMonth * date).toFixed(2);
 
-  // код для задачи №2 писать здесь
-
-  return totalAmount;
+  return parseFloat(totalAmount);
 }
