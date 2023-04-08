@@ -21,6 +21,7 @@ class PrintEditionItem {
       this._state = newState;
     }
   }
+  
   get state() {
     return this._state;
   }
@@ -77,13 +78,15 @@ class Library {
   findBookBy(type, value) {
     return this.books.find((book) => book[type] === value) || null;
   }
+
   giveBookByName(bookName) {
-    this.books.pop(bookName);
-    return this.books.find((bookName) => bookName[type] === value) || null;
+    let book = this.findBookBy(bookName);
+    this.books.pop(book);
+    return book;
   }
 }
 
-const library = new Library("Библиотека Ленина");
+const library = new Library("Библиотека имени Ленина");
 
 library.addBook(
   new DetectiveBook(
@@ -93,9 +96,22 @@ library.addBook(
     1008
   )
 );
+
 library.addBook(
-  new FantasticBook("Аркадий Стругацкий", "Пикник на обочине", 1972, 168)
+  new FantasticBook(
+    "Аркадий и Борис Стругацкие",
+    "Пикник на обочине",
+    1972,
+    168
+  )
 );
+
 library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
 library.addBook(new Magazine("Мурзилка", 1924, 60));
+library.addBook(new NovelBook("Герберт Уэллс", "Машина Времени", 1919, 138));
+library.findBookBy("releaseDate", 1919);
 library.giveBookByName("Машина времени");
+const mashina = new FantasticBook("Герберт Уэллс", "Машина времени", 1919, 138);
+mashina.state = 40;
+mashina.fix();
+library.addBook(mashina);
