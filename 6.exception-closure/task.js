@@ -33,14 +33,17 @@ class Triangle {
   }
 }
 
-function getTtiangle(a, b, c) {
-  const triangle = new Triangle(a, b, c);
+function getTriangle(a, b, c) {
   try {
-    return triangle;
+    return new Triangle(a, b, c);
   } catch (error) {
     return {
-      area: "Ошибка! Треугольник не существует",
-      perimeter: "Ошибка! Треугольник не существует",
+      get area() {
+        return "Ошибка! Треугольник не существует";
+      },
+      get perimeter() {
+        return "Ошибка! Треугольник не существует";
+      },
     };
   }
 }
