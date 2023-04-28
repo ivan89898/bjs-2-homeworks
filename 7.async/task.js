@@ -21,9 +21,9 @@ class AlarmClock {
     );
   }
   getCurrentFormattedTime() {
-    const now = new Date() ;
-    let hours = now.getHours();
-    let minutes = now.getMinutes();
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, "0");
+    const minutes = now.getMinutes().toString().padStart(2, "0");
     return `${hours}:${minutes}`;
   }
   start() {
@@ -31,7 +31,7 @@ class AlarmClock {
       return;
     }
     this.intervalId = setInterval(() => {
-      const currentTime = this.getCurrentFormattedTime;
+      const currentTime = this.getCurrentFormattedTime();
 
       this.alarmCollection.forEach((alarm) => {
         if (alarm.time === currentTime && alarm.canCall) {
